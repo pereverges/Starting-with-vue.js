@@ -20,15 +20,22 @@
             <div class="form-group">
               <label> Note Text</label>
               <textarea class="form-control" v-model="note.text"></textarea>
+              <input id="checkbox" style="margin-top: 10px" type="checkbox" v-model="note.important">
+              <label for="checkbox"> Important </label>
             </div>
           </div>
-          <button class="btn btn-primary" style="margin: auto; width: 100%" @click="addNote">Submit</button>
+          <button class="btn btn-primary" style="margin: auto; margin-top: -10px; width: 100%" @click="addNote">Submit</button>
         </div>
-        <div class="row justify-content-md" style="margin-top: 10px">
+        <div class="row justify-content-md" style="margin: 20px 5px">
           <div class="col-sm-4 note" v-for="(note, index) in notes">
             <div class="card">
-              <button class="close" style="position: absolute; right: 10px; top: 5px; margin-bottom:-20px" @click="removeNote(index)">&times;</button>
-              <div class="card-block">
+              <button class="close" style="position: absolute; right: 10px; top: 0px; margin-bottom:-20px" @click="removeNote(index)">&times;</button>
+              <div class="card-block" v-if="note.important">
+                <h4 class="card-title" style="color: red">{{note.title}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{note.date}}</h6>
+                <p class="card-text">{{note.text}}</p>
+              </div>
+              <div class="card-block" v-else>
                 <h4 class="card-title">{{note.title}}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">{{note.date}}</h6>
                 <p class="card-text">{{note.text}}</p>
@@ -45,24 +52,23 @@
           title: 'Notemaster',
           note:{
             title: '',
-            text: ''
+            text: '',
+            important: false
           },
-          notes: [
-            {
-              title: 'Visited Hawaii',
-              text: 'I am so happy',
-              date: new Date(Date.now()).toLocaleString()
-            }
-          ],
-          notes2: []
+          notes: [],
+          importantNotes: []
         },
         methods: {
           addNote(){
-            let {text, title} = this.note
+            let {text, title, important} = this.note
             this.notes.push({
               text,
               title,
               date:new Date(Date.now()).toLocaleString(),
+              important
+            }),
+            this.notes.sort(function(x,y){
+              return y.important - x.important
             })
           },
           removeNote(index){
