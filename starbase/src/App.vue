@@ -1,25 +1,27 @@
 <template lang="html">
   <div id="app">
     <h3>{{title}}</h3>
-    <button class="btn btn-primary" @click="fetchCharacter">Test</button>
+    <div class="row justify-content-md">
+        <Character
+          v-for="(id, index) in intial_ids"
+          :id="id"
+          key="index" />
+    </div>
   </div>
 </template>
 
 <script>
+import Character from './components/character.vue'
 export default {
   name: 'app',
-  data(){
-    return{
-      title: 'Generate Your Team'
+  data() {
+    return {
+      title: 'Generate Your Team',
+      intial_ids: [1, 13, 14]
     }
   },
-  methods: {
-    fetchCharacter() {
-      fetch('http://swapi.co/api/people/1', {
-        method: 'GET'
-      }).then(response => response.json())
-        .then(json => console.log(json))
-    }
+  components: {
+    Character
   }
 }
 </script>
