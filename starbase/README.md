@@ -1,18 +1,2 @@
-# starbase
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Simple Star Wars application, just some cards showing Star Wars characters informations
+Implemented with Vue, and use of external API
