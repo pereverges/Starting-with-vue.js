@@ -3,9 +3,8 @@
     <h3>{{title}}</h3>
     <div class="row justify-content-md">
         <Character
-          v-for="(id, index) in intial_ids"
-          :id="id"
-          key="index" />
+          v-for="(id) in ids"
+          :id="id" />
     </div>
   </div>
 </template>
@@ -17,7 +16,7 @@ export default {
   data() {
     return {
       title: 'Generate Your Team',
-      intial_ids: [1, 13, 14]
+      ids: [1, 13, 14]
     }
   },
   components: {
