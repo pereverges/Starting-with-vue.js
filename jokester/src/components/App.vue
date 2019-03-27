@@ -17,7 +17,7 @@
     <div class="row justify-content-md">
       <Joke
         v-for="(joke, index) in $store.state.jokes"
-        v-show="checkedTypes.includes(joke.type)"
+        v-show="checkedTypes.includes(joke.typet)"
         :joke="joke"
         :index="index"
         key="index"/>
